@@ -1,19 +1,42 @@
 // ** Import Recoil
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { headChannel } from "../../recoil/head-channel";
+import { infoUser } from "../../recoil/info-users.";
+
+// ** Import Heroicons
+import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 
 const HeadChannel = () => {
   // Recoil State
   const data = useRecoilValue(headChannel);
+  const isInfoUser = useRecoilValue(infoUser);
+
+  // Recoil Set State
+  const setInfoUser = useSetRecoilState(infoUser);
+
+  const handleInfoUser = () => {
+    setInfoUser(!isInfoUser);
+  };
 
   return (
-    <div className="flex items-center gap-3">
-      <img
-        src={data.image}
-        alt={data.name}
-        className="rounded-full w-[3rem] h-[3rem]"
-      />
-      <h1 className="text-white/80 font-semibold text-lg">{data.name}</h1>
+    <div className="flex justify-between items-center">
+      <div className=" flex items-center gap-3">
+        <img
+          src={data.image}
+          alt={data.name}
+          className="rounded-full w-[43px] h-[43px] object-cover"
+        />
+        <div className=" text-sm font-semibold">
+          <h1>{data.name}</h1>
+          <p className="text-white/60">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+        </div>
+      </div>
+
+      <div onClick={handleInfoUser}>
+        <EllipsisVerticalIcon className="h-7 w-7 cursor-pointer" />
+      </div>
     </div>
   );
 };

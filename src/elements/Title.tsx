@@ -9,7 +9,7 @@ const Title = ({ link }: { link: string }) => {
   };
 
   return (
-    <div className="text-center cursor-pointer" onClick={handleNavigate}>
+    <div className="cursor-pointer" onClick={handleNavigate}>
       <h1 className="text-[27px] font-bold">
         Gengs <span className="text-[#2A9EF4]">App</span>
       </h1>

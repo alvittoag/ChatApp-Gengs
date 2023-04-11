@@ -1,10 +1,12 @@
+// ** Import components
+import BannerHome from "../components/home/BannerHome";
+import HeadHome from "../components/home/HeadHome";
+
 const Home = () => {
   return (
-    <div>
-      <img
-        src="https://assets8.lottiefiles.com/packages/lf20_qmfs6c3i.json"
-        alt=""
-      />
+    <div className="relative">
+      <HeadHome />
+      <BannerHome />
     </div>
   );
 };
