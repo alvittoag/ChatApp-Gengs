@@ -1,7 +1,7 @@
 // ** Import Reacts
 import { useState } from "react";
 
-// ** Import Heroicons
+// ** Import 3rd Party
 import { CalendarIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const HeadHome = () => {

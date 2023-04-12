@@ -1,11 +1,11 @@
 // ** Import React
 import React from "react";
 
-// ** Import Lottiefiles
-import Lottie from "lottie-react";
-
 // ** Import Assets
 import bannerHome from "../../assets/home/bannerHome.json";
+
+// ** Import 3rd Party
+import Lottie from "lottie-react";
 
 const BannerHome = () => {
   return (

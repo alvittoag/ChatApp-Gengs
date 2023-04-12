@@ -3,8 +3,9 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { headChannel } from "../../recoil/head-channel";
 import { infoUser } from "../../recoil/info-users.";
 
-// ** Import Heroicons
+// ** Import 3rd Party
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 const HeadChannel = () => {
   // Recoil State
@@ -35,7 +36,11 @@ const HeadChannel = () => {
       </div>
 
       <div onClick={handleInfoUser}>
-        <EllipsisVerticalIcon className="h-7 w-7 cursor-pointer" />
+        {isInfoUser ? (
+          <ChevronRightIcon className="h-7 w-7 cursor-pointer" />
+        ) : (
+          <EllipsisVerticalIcon className="h-7 w-7 cursor-pointer" />
+        )}
       </div>
     </div>
   );

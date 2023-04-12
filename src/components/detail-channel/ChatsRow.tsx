@@ -1,6 +1,6 @@
-const Chats = () => {
+const ChatsRow = () => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 overflow-y-auto py-10 px-12">
       {dummyData.map((data) => (
         <div
           key={data.message}
@@ -20,7 +20,7 @@ const Chats = () => {
                 data.name === "Alvittoag" && "text-end"
               }`}
             >
-              {data.name}
+              {data.name === "Alvittoag" ? "You" : data.name}
             </h1>
             <div className="bg-[#212329] mt-2 -ml-1 py-3 px-5 rounded-md max-w-md">
               <p className="text-white/980">{data.message}</p>
@@ -32,7 +32,7 @@ const Chats = () => {
   );
 };
 
-export default Chats;
+export default ChatsRow;
 
 interface IDummData {
   name: string;
@@ -48,7 +48,7 @@ const dummyData: IDummData[] = [
       "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/299183962_1504328420011802_3456514305754161712_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZdwyUfR1erwAX___Asn&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfCGZt1O6UXMeFmBs9yYlaqrkXL6z1bEx-zvS47wloBC0w&oe=64397FAE",
   },
   {
-    name: "anggun",
+    name: "Anggun",
     message: "Apa hayo",
     image:
       "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/243071809_1287191601725486_3971480056077451387_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=gcGjlg3igYgAX_EzQhx&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfBqcr0y49QqLyVBTICCr-ubNSyZyY9oA5YRFXCwlxsCYQ&oe=6439ECA8",
@@ -61,17 +61,17 @@ const dummyData: IDummData[] = [
       "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/299183962_1504328420011802_3456514305754161712_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZdwyUfR1erwAX___Asn&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfCGZt1O6UXMeFmBs9yYlaqrkXL6z1bEx-zvS47wloBC0w&oe=64397FAE",
   },
   {
-    name: "anggun",
+    name: "Anggun",
     message:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, tempore. Libero, esse unde maiores, repellat quasi adipisci labore eaque earum officiis voluptatibus nemo molestiae, hic recusandae totam ipsum quo quam consectetur necessitatibus sit? Ratione nemo architecto nam sequi laudantium quos.",
     image:
       "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/243071809_1287191601725486_3971480056077451387_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=gcGjlg3igYgAX_EzQhx&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfBqcr0y49QqLyVBTICCr-ubNSyZyY9oA5YRFXCwlxsCYQ&oe=6439ECA8",
   },
   {
-    name: "anggun",
+    name: "MarkzAnakBandung",
     message:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, tempore. Libero, ",
     image:
-      "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/243071809_1287191601725486_3971480056077451387_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=gcGjlg3igYgAX_EzQhx&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfBqcr0y49QqLyVBTICCr-ubNSyZyY9oA5YRFXCwlxsCYQ&oe=6439ECA8",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK4lOAcJMgUICw28NgVkLjxm1Fv7eOsgBher2X9Efr7r9jizSSd9TKTMbM4_fLN5XeLt8&usqp=CAU",
   },
 ];

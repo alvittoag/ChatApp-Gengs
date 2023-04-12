@@ -6,7 +6,9 @@ const Home = () => {
   return (
     <div className="relative">
       <HeadHome />
-      <BannerHome />
+      <div className="h-[100vh]">
+        <BannerHome />
+      </div>
     </div>
   );
 };

@@ -4,10 +4,10 @@ import React from "react";
 // ** Import Recoil
 import { useRecoilValue } from "recoil";
 import { sidebar } from "../recoil/sidebar";
+import { infoUser } from "../recoil/info-users.";
 
 // ** Import Components
 import Sidebar from "../components/Sidebar";
-import { infoUser } from "../recoil/info-users.";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   //  ** Recoil State
@@ -26,7 +26,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Sidebar />
       </div>
 
-      <div className="flex-1 ">
+      <div className="flex-1">
         <div className=" bg-[#131517]">{children}</div>
       </div>
 
@@ -35,7 +35,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="bg-[#212329] w-[21rem] border-l-2 duration-500
             border-gray-700"
         >
-          <p className="py-6 text-center">Still Progress</p>
+          <p className="py-6 text-center ">Still Progress</p>
         </div>
       )}
     </div>

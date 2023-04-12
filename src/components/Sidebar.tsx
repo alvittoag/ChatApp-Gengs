@@ -4,19 +4,18 @@ import { useState } from "react";
 // ** Import Elements
 import Title from "../elements/Title";
 
-// ** Import 3rd Party
-import { Link } from "react-router-dom";
-
 // ** Import Recoil
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { headChannel } from "../recoil/head-channel";
 import { sidebar } from "../recoil/sidebar";
 
-// ** Import Heroicons
+// ** Import 3rd Party
+import { Link } from "react-router-dom";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ChevronRightIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
@@ -66,12 +65,15 @@ const Sidebar = () => {
       </div>
 
       {!isSidebarClose && (
-        <div className="px-8 mt-6 mb-7">
-          <input
-            type="text"
-            placeholder="Cari Channel..."
-            className="w-full py-[8px] px-3 rounded-md bg-gray-800 text-gray-300 ring-1 ring-gray-500 shadow-xl placeholder:text-gray-400 font-medium"
-          />
+        <div className="px-8 mt-6 mb-7 ">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Cari Channel..."
+              className="w-full bg-[#212329] py-[8px] px-3 rounded-md text-gray-300 ring-1 ring-gray-600 shadow-xl placeholder:text-gray-500 font-medium "
+            />
+            <MagnifyingGlassIcon className="absolute right-4 top-[9px] w-5 h-5 text-gray-400 " />
+          </div>
         </div>
       )}
 
