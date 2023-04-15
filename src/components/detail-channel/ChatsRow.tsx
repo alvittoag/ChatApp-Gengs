@@ -1,77 +1,44 @@
-const ChatsRow = () => {
-  return (
-    <div className="space-y-8 overflow-y-auto py-10 px-12">
-      {dummyData.map((data) => (
-        <div
-          key={data.message}
-          className={`flex gap-5 items-start ${
-            data.name === "Alvittoag" &&
-            "flex flex-row-reverse item gap-4 items-start"
-          }`}
-        >
-          <img
-            src={data.image}
-            className="rounded-full w-[3rem] object-cover h-[3rem]"
-          />
+// ** Import React
+import React from "react";
 
-          <div>
-            <h1
-              className={`font-semibold ${
-                data.name === "Alvittoag" && "text-end"
-              }`}
-            >
-              {data.name === "Alvittoag" ? "You" : data.name}
-            </h1>
-            <div className="bg-[#212329] mt-2 -ml-1 py-3 px-5 rounded-md max-w-md">
-              <p className="text-white/980">{data.message}</p>
-            </div>
+// ** Import Schema
+import { IMessagesInfo } from "../../schema/Channel";
+
+type Props = {
+  data: IMessagesInfo;
+};
+
+const ChatsRow = ({ data }: Props) => {
+  return (
+    <React.Fragment>
+      <div
+        key={data.message}
+        className={`flex gap-5 items-start ${
+          data.user.username === "Alvittoag" &&
+          "flex flex-row-reverse item gap-4 items-start"
+        }`}
+      >
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK4lOAcJMgUICw28NgVkLjxm1Fv7eOsgBher2X9Efr7r9jizSSd9TKTMbM4_fLN5XeLt8&usqp=CAU"
+          className="rounded-full w-[3rem] object-cover h-[3rem]"
+        />
+
+        <div>
+          <h1
+            className={`font-semibold ${
+              data.user.username === "Alvittoag" && "text-end"
+            }`}
+          >
+            {data.user.username === "Alvittoag" ? "You" : data.user.username}
+          </h1>
+
+          <div className="bg-[#212329] mt-2 -ml-1 py-3 px-5 rounded-md max-w-md">
+            <p className="text-white/980">{data.message}</p>
           </div>
         </div>
-      ))}
-    </div>
+      </div>
+    </React.Fragment>
   );
 };
 
 export default ChatsRow;
-
-interface IDummData {
-  name: string;
-  message: string;
-  image: string;
-}
-
-const dummyData: IDummData[] = [
-  {
-    name: "Alvittoag",
-    message: "Apa hayosdfdsfdsfdsjfdskfjkdsjf",
-    image:
-      "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/299183962_1504328420011802_3456514305754161712_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZdwyUfR1erwAX___Asn&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfCGZt1O6UXMeFmBs9yYlaqrkXL6z1bEx-zvS47wloBC0w&oe=64397FAE",
-  },
-  {
-    name: "Anggun",
-    message: "Apa hayo",
-    image:
-      "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/243071809_1287191601725486_3971480056077451387_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=gcGjlg3igYgAX_EzQhx&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfBqcr0y49QqLyVBTICCr-ubNSyZyY9oA5YRFXCwlxsCYQ&oe=6439ECA8",
-  },
-  {
-    name: "Alvittoag",
-    message:
-      "  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur velit assumenda praesentium eveniet dolorem necessitatibus eligendi",
-    image:
-      "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/299183962_1504328420011802_3456514305754161712_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZdwyUfR1erwAX___Asn&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfCGZt1O6UXMeFmBs9yYlaqrkXL6z1bEx-zvS47wloBC0w&oe=64397FAE",
-  },
-  {
-    name: "Anggun",
-    message:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, tempore. Libero, esse unde maiores, repellat quasi adipisci labore eaque earum officiis voluptatibus nemo molestiae, hic recusandae totam ipsum quo quam consectetur necessitatibus sit? Ratione nemo architecto nam sequi laudantium quos.",
-    image:
-      "https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/243071809_1287191601725486_3971480056077451387_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=gcGjlg3igYgAX_EzQhx&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfBqcr0y49QqLyVBTICCr-ubNSyZyY9oA5YRFXCwlxsCYQ&oe=6439ECA8",
-  },
-  {
-    name: "MarkzAnakBandung",
-    message:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, tempore. Libero, ",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK4lOAcJMgUICw28NgVkLjxm1Fv7eOsgBher2X9Efr7r9jizSSd9TKTMbM4_fLN5XeLt8&usqp=CAU",
-  },
-];

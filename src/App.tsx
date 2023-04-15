@@ -5,7 +5,7 @@ import Layout from "./layout/Layout";
 import Home from "./pages/Home";
 import DetailChannel from "./pages/DetailChannel";
 
-// ** Import 3rd Party
+// ** Import Other
 import { Route, Routes } from "react-router-dom";
 
 const App = () => {

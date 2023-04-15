@@ -1,19 +1,21 @@
 // ** Import Recoil
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { headChannel } from "../../recoil/head-channel";
-import { infoUser } from "../../recoil/info-users.";
+import { useRecoilState } from "recoil";
+import { toggleInfoUser } from "../../recoil/toggle";
 
-// ** Import 3rd Party
+// ** Import Schema
+import { IResChannel } from "../../schema/Channel";
+
+// ** Import Other
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
-const HeadChannel = () => {
-  // Recoil State
-  const data = useRecoilValue(headChannel);
-  const isInfoUser = useRecoilValue(infoUser);
+type Props = {
+  channel_info: IResChannel | undefined;
+};
 
-  // Recoil Set State
-  const setInfoUser = useSetRecoilState(infoUser);
+const HeadChannel = ({ channel_info }: Props) => {
+  // Recoil State
+  const [isInfoUser, setInfoUser] = useRecoilState(toggleInfoUser);
 
   const handleInfoUser = () => {
     setInfoUser(!isInfoUser);
@@ -23,14 +25,16 @@ const HeadChannel = () => {
     <div className="flex justify-between items-center">
       <div className=" flex items-center gap-3">
         <img
-          src={data.image}
-          alt={data.name}
+          src={channel_info?.image}
+          alt={channel_info?.name}
           className="rounded-full w-[43px] h-[43px] object-cover"
         />
+
         <div className=" text-sm font-semibold">
-          <h1>{data.name}</h1>
+          <h1>{channel_info?.name}</h1>
+
           <p className="text-white/60">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            {channel_info?.description.substring(0, 75)}...
           </p>
         </div>
       </div>

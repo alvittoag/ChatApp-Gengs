@@ -1,14 +1,23 @@
 // ** Import components
+import { useRecoilValue } from "recoil";
 import BannerHome from "../components/home/BannerHome";
+import DropdownUser from "../components/home/DropdownUser";
+
+// ** Import Recoil
 import HeadHome from "../components/home/HeadHome";
+import { toggleUser } from "../recoil/toggle";
 
 const Home = () => {
+  // ** Recoil State
+  const dropdownUser = useRecoilValue(toggleUser);
+
   return (
     <div className="relative">
       <HeadHome />
-      <div className="h-[100vh]">
-        <BannerHome />
-      </div>
+
+      {dropdownUser && <DropdownUser />}
+
+      <BannerHome />
     </div>
   );
 };

@@ -1,11 +1,19 @@
-// ** Import 3rd Party
+// ** Import Recoil
+import { useSetRecoilState } from "recoil";
+import { navigation } from "../recoil/navigation";
+
+// ** Import Other
 import { useNavigate } from "react-router-dom";
 
 const Title = ({ link }: { link: string }) => {
+  // ** Recoil Set State
+  const setNavigationId = useSetRecoilState(navigation);
+
   const navigate = useNavigate();
 
   const handleNavigate = () => {
     navigate(link);
+    setNavigationId(0);
   };
 
   return (

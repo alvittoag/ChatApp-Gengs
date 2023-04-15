@@ -3,25 +3,22 @@ import React from "react";
 
 // ** Import Recoil
 import { useRecoilValue } from "recoil";
-import { sidebar } from "../recoil/sidebar";
-import { infoUser } from "../recoil/info-users.";
+import { toggleInfoUser, toggleSideBar } from "../recoil/toggle";
 
 // ** Import Components
 import Sidebar from "../components/Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   //  ** Recoil State
-  const isSidebarClose = useRecoilValue(sidebar);
-  const isInfoUser = useRecoilValue(infoUser);
+  const sideBar = useRecoilValue(toggleSideBar);
+  const isInfoUser = useRecoilValue(toggleInfoUser);
 
   return (
     <div className="flex text-white h-[100vh] overflow-hidden">
       <div
         className={`bg-[#212329]  ${
-          isSidebarClose
-            ? "w-[7rem] duration-500"
-            : "w-[26rem] duration-500 transition-all"
-        } border-r-2 border-gray-700`}
+          sideBar ? "w-[7rem] " : "w-[26rem]"
+        } border-r-2 border-gray-700 duration-500`}
       >
         <Sidebar />
       </div>
@@ -30,14 +27,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className=" bg-[#131517]">{children}</div>
       </div>
 
-      {isInfoUser && (
-        <div
-          className="bg-[#212329] w-[21rem] border-l-2 duration-500
-            border-gray-700"
+      <div
+        className={`bg-[#212329] ${
+          isInfoUser ? "w-[21rem] border-l-2" : "w-0 border-l-0"
+        } duration-500
+            border-gray-700`}
+      >
+        <p
+          className={`py-6 text-center text ${
+            isInfoUser ? "text-white" : "text-[#131517] ml-32 duration-200"
+          } duration-500`}
         >
-          <p className="py-6 text-center ">Still Progress</p>
-        </div>
-      )}
+          Still Progress
+        </p>
+      </div>
     </div>
   );
 };
