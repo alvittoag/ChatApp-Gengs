@@ -6,7 +6,10 @@ import { useRecoilValue } from "recoil";
 import { toggleInfoUser, toggleSideBar } from "../recoil/toggle";
 
 // ** Import Components
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/sidebar/Sidebar";
+
+// ** import Other
+import { Toaster } from "react-hot-toast";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   //  ** Recoil State
@@ -22,6 +25,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         <Sidebar />
       </div>
+
+      <Toaster position="top-right" />
 
       <div className="flex-1">
         <div className=" bg-[#131517]">{children}</div>

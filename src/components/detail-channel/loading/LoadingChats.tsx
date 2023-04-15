@@ -1,4 +1,4 @@
-const LoadingChat = () => {
+const LoadingChats = () => {
   return (
     <div className="flex flex-col gap-20">
       <div className="animate-pulse flex items-start gap-3">
@@ -34,4 +34,4 @@ const LoadingChat = () => {
   );
 };
 
-export default LoadingChat;
+export default LoadingChats;

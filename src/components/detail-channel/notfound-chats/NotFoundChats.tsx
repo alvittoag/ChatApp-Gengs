@@ -1,10 +1,10 @@
 // ** Import Assets
-import assets from "../assets/assets";
 
 // ** Import Other
 import Lottie from "lottie-react";
+import assets from "../../../assets/assets";
 
-const NotFounChats = () => {
+const NotFoundChats = () => {
   return (
     <div>
       <Lottie animationData={assets.notFound} style={{ height: 340 }} />
@@ -15,4 +15,4 @@ const NotFounChats = () => {
   );
 };
 
-export default NotFounChats;
+export default NotFoundChats;

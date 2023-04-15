@@ -2,8 +2,8 @@
 import { useRecoilState } from "recoil";
 import { toggleInfoUser } from "../../recoil/toggle";
 
-// ** Import Schema
-import { IResChannel } from "../../schema/Channel";
+// ** Import Models
+import { IResChannel } from "../../models/Channel";
 
 // ** Import Other
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";

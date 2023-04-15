@@ -1,8 +1,8 @@
 // ** Import React
 import React from "react";
 
-// ** Import Schema
-import { IMessagesInfo } from "../../schema/Channel";
+// ** Import Models
+import { IMessagesInfo } from "../../models/Channel";
 
 type Props = {
   data: IMessagesInfo;

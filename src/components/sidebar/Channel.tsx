@@ -1,28 +1,32 @@
-// ** Import Elements
-import LoadingChannel from "../elements/LoadingChannel";
-
 // ** Import Recoil
 import { useRecoilState, useRecoilValue } from "recoil";
-import { navigation } from "../recoil/navigation";
-import { toggleSideBar } from "../recoil/toggle";
+import { navigation } from "../../recoil/navigation";
+import { toggleSideBar } from "../../recoil/toggle";
+import { searchChannel } from "../../recoil/search-channel";
 
-// ** Import Schema
-import { IResApi } from "../schema/ResApi";
+// ** Import Models
+import { IResApi } from "../../models/ResApi";
 
 // ** Import Service
-import { getChannel } from "../service/api/GetChannel";
+import { getChannel } from "../../service/api/GetChannel";
 
 // ** Import Other
 import { useSubscription } from "@apollo/client";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import LoadingChannel from "../../global/LoadingChannel";
+import { capitalize } from "../../helpers/convert-capitalize";
+import NotFoundChannel from "./notfound-channel/NotFoundChannel";
 
 const Channel = () => {
   // ** Recoil State
   const [navigationId, setNavigationId] = useRecoilState(navigation);
   const isSidebarClose = useRecoilValue(toggleSideBar);
+  const search = useRecoilValue(searchChannel);
 
-  const { data, loading } = useSubscription<IResApi>(getChannel);
+  const { data, loading } = useSubscription<IResApi>(getChannel, {
+    variables: { value: `%${capitalize(search)}%` },
+  });
 
   const handleNavigation = (data: number) => {
     setNavigationId(data);
@@ -30,6 +34,8 @@ const Channel = () => {
 
   return (
     <div className="space-y-10">
+      {data?.channels.length === 0 && <NotFoundChannel />}
+
       {loading && (
         <div className="px-9 flex flex-col gap-8">
           <LoadingChannel

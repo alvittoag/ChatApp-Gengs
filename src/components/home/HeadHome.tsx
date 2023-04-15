@@ -1,4 +1,4 @@
-// ** Import Reacts
+// ** Import React
 import { useState } from "react";
 
 // ** Import Recoil

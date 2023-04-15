@@ -5,14 +5,11 @@ import { useEffect } from "react";
 import HeadChannel from "../components/detail-channel/HeadChannel";
 import ChatInput from "../components/detail-channel/ChatInput";
 import ChatsRow from "../components/detail-channel/ChatsRow";
+import LoadingChats from "../components/detail-channel/loading/LoadingChats";
+import NotFoundChats from "../components/detail-channel/notfound-chats/NotFoundChats";
 
-// ** import Elements
-import LoadingChannel from "../elements/LoadingChannel";
-import LoadingChat from "../elements/LoadingChat";
-import NotFounChats from "../elements/NotFounChats";
-
-// ** Import Schema
-import { IResApi } from "../schema/ResApi";
+// ** Import Models
+import { IResApi } from "../models/ResApi";
 
 // ** Import Service
 import { getChannelById } from "../service/api/GetChannel";
@@ -24,6 +21,7 @@ import { navigation } from "../recoil/navigation";
 // ** Import Other
 import { useParams } from "react-router-dom";
 import { useSubscription } from "@apollo/client";
+import LoadingChannel from "../global/LoadingChannel";
 
 const DetailChannel = () => {
   // ** Recoil Set State
@@ -59,9 +57,9 @@ const DetailChannel = () => {
 
       <div className="flex flex-col text-white h-[100vh]">
         <div className="space-y-8 overflow-y-auto py-10 px-12">
-          {loading && <LoadingChat />}
+          {loading && <LoadingChats />}
 
-          {channel?.messages_info.length === 0 && <NotFounChats />}
+          {channel?.messages_info.length === 0 && <NotFoundChats />}
 
           {channel?.messages_info.map((info) => (
             <ChatsRow data={info} key={info.id} />
@@ -71,7 +69,7 @@ const DetailChannel = () => {
         <span className="mt-36"></span>
       </div>
 
-      <ChatInput />
+      <ChatInput channel_id={Number(channel_id)} />
     </div>
   );
 };

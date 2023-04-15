@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const getChannel = gql`
-  subscription MySubscription {
-    channels {
+  subscription MySubscription($value: String) {
+    channels(where: { name: { _like: $value } }) {
       name
       id
       image
