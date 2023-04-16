@@ -10,8 +10,9 @@ import Sidebar from "../components/sidebar/Sidebar";
 
 // ** import Other
 import { Toaster } from "react-hot-toast";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const LayoutUsers = () => {
   //  ** Recoil State
   const sideBar = useRecoilValue(toggleSideBar);
   const isInfoUser = useRecoilValue(toggleInfoUser);
@@ -29,7 +30,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Toaster position="top-right" />
 
       <div className="flex-1">
-        <div className=" bg-[#131517]">{children}</div>
+        <div className=" bg-[#131517]">
+          <Outlet />
+        </div>
       </div>
 
       <div
@@ -50,4 +53,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default Layout;
+export default LayoutUsers;

@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import App from "./App";
 import "./index.css";
-import client from "./service/apolloSetup";
+import client from "./services/apolloSetup";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <RecoilRoot>

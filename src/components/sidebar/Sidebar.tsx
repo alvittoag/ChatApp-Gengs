@@ -14,7 +14,7 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/outline";
-import Title from "../../global/Title";
+import Title from "../../globals/Title";
 
 const Sidebar = () => {
   // ** Recoil State
@@ -38,7 +38,7 @@ const Sidebar = () => {
           </div>
         ) : (
           <React.Fragment>
-            <Title link={"/"} />
+            <Title link={"/home"} />
 
             <div
               onClick={() => setSidebar(true)}

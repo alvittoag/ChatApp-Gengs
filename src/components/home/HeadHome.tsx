@@ -44,8 +44,8 @@ const HeadHome = () => {
           <p onClick={handleDropdown}>Hi, alvittoag</p>
 
           <img
-            src="https://scontent.fcgk33-1.fna.fbcdn.net/v/t39.30808-6/243071809_1287191601725486_3971480056077451387_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=gcGjlg3igYgAX_EzQhx&_nc_ht=scontent.fcgk33-1.fna&oh=00_AfBqcr0y49QqLyVBTICCr-ubNSyZyY9oA5YRFXCwlxsCYQ&oe=6439ECA8"
-            className="rounded-full w-[42px] object-cover"
+            src="https://scontent.fcgk18-1.fna.fbcdn.net/v/t39.30808-6/299183962_1504328420011802_3456514305754161712_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFOEkCP-CsGbsKDdyKqOJsCJanmpU0wmlolqealTTCaWjPluFuqrytON0qmLeISPX7S8EgUaueiEUEW_eF_F8RN&_nc_ohc=mlXWn-0e_WQAX-KwkZt&_nc_ht=scontent.fcgk18-1.fna&oh=00_AfCmCQ56EFcGGLhIqqcyZmB4FIRBKRY2eUMJQY1iAuI6hg&oe=644168AE"
+            className="rounded-full w-[42px] h-[42px] object-cover"
           />
         </div>
 

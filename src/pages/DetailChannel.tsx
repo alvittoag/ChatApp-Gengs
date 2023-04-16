@@ -12,7 +12,7 @@ import NotFoundChats from "../components/detail-channel/notfound-chats/NotFoundC
 import { IResApi } from "../models/ResApi";
 
 // ** Import Service
-import { getChannelById } from "../service/api/GetChannel";
+import { getChannelById } from "../services/api/GetChannel";
 
 // ** Import Recoil
 import { useSetRecoilState } from "recoil";
@@ -21,7 +21,7 @@ import { navigation } from "../recoil/navigation";
 // ** Import Other
 import { useParams } from "react-router-dom";
 import { useSubscription } from "@apollo/client";
-import LoadingChannel from "../global/LoadingChannel";
+import LoadingChannel from "../globals/LoadingChannel";
 
 const DetailChannel = () => {
   // ** Recoil Set State
@@ -37,7 +37,7 @@ const DetailChannel = () => {
 
   useEffect(() => {
     setNavigationId(Number(channel_id));
-  }, [channel_id]);
+  }, []);
 
   return (
     <div className="relative">

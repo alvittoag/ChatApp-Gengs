@@ -8,15 +8,15 @@ import { searchChannel } from "../../recoil/search-channel";
 import { IResApi } from "../../models/ResApi";
 
 // ** Import Service
-import { getChannel } from "../../service/api/GetChannel";
+import { getChannel } from "../../services/api/GetChannel";
 
 // ** Import Other
 import { useSubscription } from "@apollo/client";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import LoadingChannel from "../../global/LoadingChannel";
-import { capitalize } from "../../helpers/convert-capitalize";
+import LoadingChannel from "../../globals/LoadingChannel";
 import NotFoundChannel from "./notfound-channel/NotFoundChannel";
+import { capitalize } from "../../helpers/convert-capitalize";
 
 const Channel = () => {
   // ** Recoil State

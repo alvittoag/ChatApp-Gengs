@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // ** Import Service
-import { postChat } from "../../service/api/PostChat";
+import { postChat } from "../../services/api/PostChat";
 
 //  ** Import Other
 import { useMutation } from "@apollo/client";
