@@ -61,7 +61,7 @@ const SignIn = ({ handleSignUp }: Props) => {
             Sign In
           </button>
           <p className="text-gray-400 text-sm">
-            don't have account signup ?{" "}
+            Don't have an account ?{" "}
             <span
               className="text-sm text-[#2A9EF4] cursor-pointer"
               onClick={handleSignUp}

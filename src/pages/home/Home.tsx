@@ -1,11 +1,11 @@
 // ** Import components
 import { useRecoilValue } from "recoil";
-import BannerHome from "../components/home/BannerHome";
-import DropdownUser from "../components/home/DropdownUser";
+import BannerHome from "../../components/home/BannerHome";
+import DropdownUser from "../../components/home/DropdownUser";
 
 // ** Import Recoil
-import HeadHome from "../components/home/HeadHome";
-import { toggleUser } from "../recoil/toggle";
+import HeadHome from "../../components/home/HeadHome";
+import { toggleUser } from "../../recoil/toggle";
 
 const Home = () => {
   // ** Recoil State
