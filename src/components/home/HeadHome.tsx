@@ -5,6 +5,9 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { toggleUser } from "../../recoil/toggle";
 
+// ** Import Models
+import { IUser } from "../../models/User";
+
 // ** Import Other
 import {
   CalendarIcon,
@@ -27,6 +30,10 @@ const HeadHome = () => {
     setDropdownUser(!dropdownUser);
   };
 
+  const userObj: any = localStorage.getItem("user");
+
+  const user: IUser = JSON.parse(userObj);
+
   return (
     <div className="flex justify-between w-full py-5 px-14 font-semibold text-white/80 text-sm tracking-wide items-center z-10">
       <div className="flex items-center gap-3">
@@ -41,10 +48,10 @@ const HeadHome = () => {
         className="flex items-center gap-2 cursor-pointer"
       >
         <div className="flex items-center gap-4">
-          <p onClick={handleDropdown}>Hi, alvittoag</p>
+          <p onClick={handleDropdown}>Hi, {user.username}</p>
 
           <img
-            src="https://scontent.fcgk18-1.fna.fbcdn.net/v/t39.30808-6/299183962_1504328420011802_3456514305754161712_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFOEkCP-CsGbsKDdyKqOJsCJanmpU0wmlolqealTTCaWjPluFuqrytON0qmLeISPX7S8EgUaueiEUEW_eF_F8RN&_nc_ohc=mlXWn-0e_WQAX-KwkZt&_nc_ht=scontent.fcgk18-1.fna&oh=00_AfCmCQ56EFcGGLhIqqcyZmB4FIRBKRY2eUMJQY1iAuI6hg&oe=644168AE"
+            src={user.image}
             className="rounded-full w-[42px] h-[42px] object-cover"
           />
         </div>

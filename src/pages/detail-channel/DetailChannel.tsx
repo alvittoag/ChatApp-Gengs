@@ -2,26 +2,26 @@
 import { useEffect } from "react";
 
 // ** Import Components
-import HeadChannel from "../components/detail-channel/HeadChannel";
-import ChatInput from "../components/detail-channel/ChatInput";
-import ChatsRow from "../components/detail-channel/ChatsRow";
-import LoadingChats from "../components/detail-channel/loading/LoadingChats";
-import NotFoundChats from "../components/detail-channel/notfound-chats/NotFoundChats";
+import HeadChannel from "../../components/detail-channel/HeadChannel";
+import ChatInput from "../../components/detail-channel/ChatInput";
+import ChatsRow from "../../components/detail-channel/ChatsRow";
+import LoadingChats from "../../components/detail-channel/loading/LoadingChats";
+import NotFoundChats from "../../components/detail-channel/notfound-chats/NotFoundChats";
 
 // ** Import Models
-import { IResApi } from "../models/ResApi";
+import { IResApi } from "../../models/ResApi";
 
 // ** Import Service
-import { getChannelById } from "../services/api/GetChannel";
+import { getChannelById } from "../../services/api/GetChannel";
 
 // ** Import Recoil
 import { useSetRecoilState } from "recoil";
-import { navigation } from "../recoil/navigation";
+import { navigation } from "../../recoil/navigation";
 
 // ** Import Other
 import { useParams } from "react-router-dom";
 import { useSubscription } from "@apollo/client";
-import LoadingChannel from "../globals/LoadingChannel";
+import LoadingChannel from "../../globals/LoadingChannel";
 
 const DetailChannel = () => {
   // ** Recoil Set State

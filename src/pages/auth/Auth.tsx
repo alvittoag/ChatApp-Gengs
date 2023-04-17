@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 // ** Import Components
-import BannerAuth from "../components/auth/BannerAuth";
-import SignIn from "../components/auth/SignIn";
-import SignUp from "../components/auth/SignUp";
+import BannerAuth from "../../components/auth/BannerAuth";
+import SignIn from "../../components/auth/SignIn";
+import SignUp from "../../components/auth/SignUp";
 
 const Auth = () => {
   // ** Local State
@@ -22,7 +22,7 @@ const Auth = () => {
         <SignIn handleSignUp={handleSignUp} />
       )}
 
-      <BannerAuth />
+      <BannerAuth signUp={signUp} />
     </div>
   );
 };
