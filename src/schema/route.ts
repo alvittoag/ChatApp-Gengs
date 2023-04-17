@@ -1,7 +1,7 @@
 // ** Import Pages
-import Home from "../pages/Home";
-import DetailChannel from "../pages/DetailChannel";
-import Auth from "../pages/Auth";
+import Home from "../pages/home/Home";
+import DetailChannel from "../pages/detail-channel/DetailChannel";
+import Auth from "../pages/auth/Auth";
 
 export const routeAuth = {
   path: "/",
