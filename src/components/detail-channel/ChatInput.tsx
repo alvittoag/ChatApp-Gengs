@@ -4,6 +4,9 @@ import { useState } from "react";
 // ** Import Service
 import { postChat } from "../../services/api/PostChat";
 
+// ** Import Models
+import { IUser } from "../../models/User";
+
 //  ** Import Other
 import { useMutation } from "@apollo/client";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
@@ -19,11 +22,15 @@ const ChatInput = ({ channel_id }: Props) => {
 
   const [sendChat, { loading }] = useMutation(postChat);
 
+  const userObj: any = localStorage.getItem("user");
+
+  const user: IUser = JSON.parse(userObj);
+
   const handleSendChat = (e: React.FormEvent) => {
     e.preventDefault();
 
     const payload = {
-      user_id: 1,
+      user_id: user.id,
       message,
       channel_id,
     };

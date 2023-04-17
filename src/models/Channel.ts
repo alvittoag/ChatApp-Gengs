@@ -9,5 +9,5 @@ export interface IResChannel {
 export interface IMessagesInfo {
   id: number;
   message: string;
-  user: { username: string };
+  user: { username: string; image: string };
 }
