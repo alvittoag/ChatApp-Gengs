@@ -56,7 +56,7 @@ const DetailChannel = () => {
       </div>
 
       <div className="flex flex-col text-white h-[100vh]">
-        <div className="space-y-8 overflow-y-auto py-10 px-12">
+        <div className="space-y-8 overflow-y-auto py-10 px-12 h-full flex flex-col-reverse">
           {loading && <LoadingChats />}
 
           {channel?.messages_info.length === 0 && <NotFoundChats />}
