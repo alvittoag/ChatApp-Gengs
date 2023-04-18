@@ -27,9 +27,11 @@ const SignIn = ({ handleSignUp }: Props) => {
   });
   const [error, setError] = useState("");
 
-  const [validateUser, { loading }] = useLazyQuery(
+  const [validateUser, { loading, data }] = useLazyQuery(
     getUserByUsernameAndPassword
   );
+
+  console.log(data);
 
   const regex = /^[A-Za-z 0-9]*$/;
 

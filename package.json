@@ -12,6 +12,7 @@
     "@apollo/client": "^3.7.12",
     "@heroicons/react": "^2.0.17",
     "@hookform/resolvers": "^3.0.1",
+    "firebase": "^9.19.1",
     "graphql": "^16.6.0",
     "graphql-ws": "^5.12.1",
     "lottie-react": "^2.4.0",
