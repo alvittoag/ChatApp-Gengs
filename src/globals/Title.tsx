@@ -1,5 +1,7 @@
 // ** Import Recoil
 import { useSetRecoilState } from "recoil";
+import { toggleInfoChannel } from "../recoil/toggle";
+
 import { navigation } from "../recoil/navigation";
 
 // ** Import Other
@@ -16,12 +18,14 @@ const Title = (props: Props) => {
 
   // ** Recoil Set State
   const setNavigationId = useSetRecoilState(navigation);
+  const setInfoChannel = useSetRecoilState(toggleInfoChannel);
 
   const navigate = useNavigate();
 
   const handleNavigate = () => {
     navigate(link ?? "");
     setNavigationId(0);
+    setInfoChannel(false);
   };
 
   return (

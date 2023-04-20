@@ -1,16 +1,16 @@
 import { atom } from "recoil";
 
 export const toggleSideBar = atom({
-  key: "sidebar",
+  key: "toggleSidebar",
   default: false,
 });
 
-export const toggleInfoUser = atom({
-  key: "infoUser",
+export const toggleInfoChannel = atom({
+  key: "toggleInfoChannel",
   default: false,
 });
 
 export const toggleUser = atom({
-  key: "dropdownUser",
+  key: "toggleDropdownUser",
   default: false,
 });

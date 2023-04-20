@@ -1,8 +1,9 @@
 // ** Import Recoil
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { navigation } from "../../recoil/navigation";
 import { toggleSideBar } from "../../recoil/toggle";
 import { searchChannel } from "../../recoil/search-channel";
+import { infoChannel } from "../../recoil/info-channel";
 
 // ** Import Models
 import { IResApi } from "../../models/ResApi";
@@ -17,19 +18,22 @@ import { Link } from "react-router-dom";
 import LoadingChannel from "../../globals/LoadingChannel";
 import NotFoundChannel from "./notfound-channel/NotFoundChannel";
 import { capitalize } from "../../helpers/convert-capitalize";
+import { IResChannel } from "../../models/Channel";
 
 const Channel = () => {
   // ** Recoil State
   const [navigationId, setNavigationId] = useRecoilState(navigation);
   const isSidebarClose = useRecoilValue(toggleSideBar);
   const search = useRecoilValue(searchChannel);
+  const setInfoChannel = useSetRecoilState(infoChannel);
 
   const { data, loading } = useSubscription<IResApi>(getChannel, {
     variables: { value: `%${capitalize(search)}%` },
   });
 
-  const handleNavigation = (data: number) => {
-    setNavigationId(data);
+  const handleNavigation = (data: IResChannel) => {
+    setNavigationId(data.id);
+    setInfoChannel(data);
   };
 
   return (
@@ -51,7 +55,7 @@ const Channel = () => {
       {data?.channels.map((data) => (
         <Link
           to={`channel/${data.id}`}
-          onClick={() => handleNavigation(data.id)}
+          onClick={() => handleNavigation(data)}
           className="flex items-center gap-4 cursor-pointer px-2"
           key={data.id}
         >

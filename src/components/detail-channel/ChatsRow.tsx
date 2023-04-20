@@ -17,7 +17,7 @@ const ChatsRow = ({ data }: Props) => {
   return (
     <React.Fragment>
       <div
-        key={data.message}
+        key={data.id}
         className={`flex gap-5 items-start ${
           data.user.username === user.username &&
           "flex flex-row-reverse item gap-4 items-start"
@@ -35,6 +35,7 @@ const ChatsRow = ({ data }: Props) => {
             }`}
           >
             {data.user.username === user.username ? "You" : data.user.username}
+            {data.user.username === "admin" && " 👑"}
           </h1>
 
           <div className="bg-[#212329] mt-2 -ml-1 py-3 px-5 rounded-md max-w-md">
