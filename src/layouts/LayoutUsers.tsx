@@ -1,12 +1,10 @@
-// ** Import React
-import React from "react";
-
 // ** Import Recoil
 import { useRecoilValue } from "recoil";
-import { toggleInfoUser, toggleSideBar } from "../recoil/toggle";
+import { toggleInfoChannel, toggleSideBar } from "../recoil/toggle";
 
 // ** Import Components
 import Sidebar from "../components/sidebar/Sidebar";
+import InfoChannel from "../components/sidebar/InfoChannel";
 
 // ** import Other
 import { Toaster } from "react-hot-toast";
@@ -15,7 +13,7 @@ import { Outlet } from "react-router-dom";
 const LayoutUsers = () => {
   //  ** Recoil State
   const sideBar = useRecoilValue(toggleSideBar);
-  const isInfoUser = useRecoilValue(toggleInfoUser);
+  const infoChannel = useRecoilValue(toggleInfoChannel);
 
   return (
     <div className="flex text-white h-[100vh] overflow-hidden">
@@ -35,20 +33,11 @@ const LayoutUsers = () => {
         </div>
       </div>
 
-      <div
-        className={`bg-[#212329] ${
-          isInfoUser ? "w-[21rem] border-l-2" : "w-0 border-l-0"
-        } duration-500
-            border-gray-700`}
-      >
-        <p
-          className={`py-6 text-center text ${
-            isInfoUser ? "text-white" : "text-[#131517] ml-32 duration-200"
-          } duration-500`}
-        >
-          Still Progress
-        </p>
-      </div>
+      {infoChannel && (
+        <div className="bg-[#212329] w-[21rem] border-l-2 border-gray-700">
+          <InfoChannel sideChannel={infoChannel} />
+        </div>
+      )}
     </div>
   );
 };

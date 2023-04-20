@@ -4,6 +4,10 @@ import React from "react";
 // ** Import Components
 import Channel from "./Channel";
 import InputSearch from "./InputSearch";
+import AddChannel from "../admin/AddChannel";
+
+// ** Import Models
+import { IUser } from "../../models/User";
 
 // ** Import Recoil
 import { useRecoilState } from "recoil";
@@ -19,6 +23,10 @@ import Title from "../../globals/Title";
 const Sidebar = () => {
   // ** Recoil State
   const [sidebar, setSidebar] = useRecoilState(toggleSideBar);
+
+  const userObj: any = localStorage.getItem("user");
+
+  const user: IUser = JSON.parse(userObj);
 
   const handleSidebarClose = (isClose: boolean) => {
     setSidebar(isClose);
@@ -52,7 +60,10 @@ const Sidebar = () => {
 
       {!sidebar && <InputSearch />}
 
-      <Channel />
+      <div className="relative h-screen">
+        <Channel />
+        {user.username === "admin" && <AddChannel sidebar={sidebar} />}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 // ** Import Recoil
-import { useRecoilState } from "recoil";
-import { toggleInfoUser } from "../../recoil/toggle";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { toggleInfoChannel } from "../../recoil/toggle";
 
 // ** Import Models
 import { IResChannel } from "../../models/Channel";
@@ -15,10 +15,10 @@ type Props = {
 
 const HeadChannel = ({ channel_info }: Props) => {
   // Recoil State
-  const [isInfoUser, setInfoUser] = useRecoilState(toggleInfoUser);
+  const [infoChannel, setInfoChannel] = useRecoilState(toggleInfoChannel);
 
   const handleInfoUser = () => {
-    setInfoUser(!isInfoUser);
+    setInfoChannel(!infoChannel);
   };
 
   return (
@@ -34,13 +34,17 @@ const HeadChannel = ({ channel_info }: Props) => {
           <h1>{channel_info?.name}</h1>
 
           <p className="text-white/60">
-            {channel_info?.description.substring(0, 75)}...
+            {infoChannel
+              ? channel_info?.description.substring(0, 52)
+              : channel_info?.description.substring(0, 75)}
+
+            {channel_info!.description.length >= 75 && "..."}
           </p>
         </div>
       </div>
 
       <div onClick={handleInfoUser}>
-        {isInfoUser ? (
+        {infoChannel ? (
           <ChevronRightIcon className="h-7 w-7 cursor-pointer" />
         ) : (
           <EllipsisVerticalIcon className="h-7 w-7 cursor-pointer" />
