@@ -1,4 +1,4 @@
-import { IResChannel } from "./Channel";
+import { IResChannel } from "./channel";
 
 export interface IResApi {
   channels: IResChannel[];

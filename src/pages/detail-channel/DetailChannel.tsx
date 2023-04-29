@@ -7,12 +7,13 @@ import ChatInput from "../../components/detail-channel/ChatInput";
 import ChatsRow from "../../components/detail-channel/ChatsRow";
 import LoadingChats from "../../components/detail-channel/loading/LoadingChats";
 import NotFoundChats from "../../components/detail-channel/notfound-chats/NotFoundChats";
+import TitlePage from "../../globals/TitlePage";
 
 // ** Import Models
-import { IResApi } from "../../models/ResApi";
+import { IResApi } from "../../models/responseApi";
 
 // ** Import Service
-import { getChannelById } from "../../services/api/GetChannel";
+import { getChannelById } from "../../services/query/GetChannel";
 
 // ** Import Recoil
 import { useSetRecoilState } from "recoil";
@@ -41,6 +42,8 @@ const DetailChannel = () => {
 
   return (
     <div className="relative">
+      <TitlePage title="Channel" />
+
       <div className=" bg-[#212329] py-4 px-12">
         {loading ? (
           <LoadingChannel

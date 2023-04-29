@@ -3,6 +3,7 @@ import assets from "../../assets/assets";
 
 // ** Import Other
 import Lottie from "lottie-react";
+
 type Props = {
   signUp: boolean;
 };

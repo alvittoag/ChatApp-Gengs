@@ -10,7 +10,7 @@ export const toggleInfoChannel = atom({
   default: false,
 });
 
-export const toggleUser = atom({
+export const toggleDropdown = atom({
   key: "toggleDropdownUser",
   default: false,
 });

@@ -3,10 +3,7 @@ import { useState } from "react";
 
 // ** Import Recoil
 import { useRecoilState } from "recoil";
-import { toggleUser } from "../../recoil/toggle";
-
-// ** Import Models
-import { IUser } from "../../models/User";
+import { toggleDropdown } from "../../recoil/toggle";
 
 // ** Import Other
 import {
@@ -14,13 +11,16 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@heroicons/react/24/outline";
+import { userLocalStorage } from "../../helpers/user-localstorage";
 
 const HeadHome = () => {
   // ** Recoil State
-  const [dropdownUser, setDropdownUser] = useRecoilState(toggleUser);
+  const [dropdownUser, setDropdownUser] = useRecoilState(toggleDropdown);
 
   // ** Local State
   const [dateTime, setDateTime] = useState<string>("");
+
+  let { username, image } = userLocalStorage();
 
   setInterval(() => {
     setDateTime(new Date().toLocaleString());
@@ -29,10 +29,6 @@ const HeadHome = () => {
   const handleDropdown = () => {
     setDropdownUser(!dropdownUser);
   };
-
-  const userObj: any = localStorage.getItem("user");
-
-  const user: IUser = JSON.parse(userObj);
 
   return (
     <div className="flex justify-between w-full py-5 px-14 font-semibold text-white/80 text-sm tracking-wide items-center z-10">
@@ -48,10 +44,10 @@ const HeadHome = () => {
         className="flex items-center gap-2 cursor-pointer"
       >
         <div className="flex items-center gap-4">
-          <p onClick={handleDropdown}>Hi, {user.username}</p>
+          <p onClick={handleDropdown}>Hi, {username}</p>
 
           <img
-            src={user.image}
+            src={image}
             className="rounded-full w-[42px] h-[42px] object-cover"
           />
         </div>

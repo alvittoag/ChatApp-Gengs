@@ -1,6 +1,6 @@
 // ** Import Recoil
 import { useSetRecoilState } from "recoil";
-import { toggleUser } from "../../recoil/toggle";
+import { toggleDropdown } from "../../recoil/toggle";
 
 // ** Import Other
 import {
@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 
 const DropdownUser = () => {
   // ** Recoil Set State
-  const setDropdown = useSetRecoilState(toggleUser);
+  const setDropdown = useSetRecoilState(toggleDropdown);
 
   const navigate = useNavigate();
 

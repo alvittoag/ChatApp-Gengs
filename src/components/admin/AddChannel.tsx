@@ -1,114 +1,45 @@
 // ** Import React
 import React, { useState } from "react";
 
+// ** Import Components
+import Modal from "./Modal";
+
 // ** Import Service
-import { postChannel } from "../../services/api/PostChannel";
+import { postChannel } from "../../services/query/PostChannel";
+
+// ** Import Models
+import { IPayloadAdmin } from "../../models/payload-admin";
 
 // ** Import Other
 import { useMutation } from "@apollo/client";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import Swal from "sweetalert2";
-import { storage } from "../../config/firebaseConfig";
-import FormAdmin from "../../globals/FormAdmin";
 
 const AddChannel = ({ sidebar }: { sidebar: boolean }) => {
   // ** Local State
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<{ name: string; description: string }>({
     name: "",
     description: "",
   });
-  const [image, setImage] = useState<any>(null);
-  const [error, setError] = useState("");
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState<boolean>(false);
 
   const [addChannel, { loading }] = useMutation(postChannel);
 
-  const regex = /^[A-Za-z 0-9]*$/;
-
-  const isErrorInput = error.length >= 1;
-
-  const isEmptyInput =
-    input.name.length === 0 || input.description.length === 0 || !image;
-
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    if (name === "name") {
-      if (regex.test(value)) {
-        setError("");
-      } else {
-        setError("Simbol tidak diperbolehkan");
-      }
-    }
-
-    if (name === "description") {
-      if (regex.test(value)) {
-        setError("");
-      } else {
-        setError("Simbol tidak diperbolehkan");
-      }
-    }
-
-    setInput({
-      ...input,
-      [name]: value,
-    });
-  };
-
-  const handleChangeImage = (e: any) => {
-    const image = e.target.files[0];
-
-    if (!image.name.match(/\.(jpg|jpeg|png|gif|PNG)$/)) {
-      setError("Format Gambar Tidak Sesuai");
-    } else {
-      setError("");
-
-      setImage(image);
-    }
-  };
-
-  const handleAddChannel = () => {
-    const storageRef = ref(storage, `/files/${image?.name}`);
-
-    const uploadTask = uploadBytesResumable(storageRef, image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const percent = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
+  const handleAddChannel = (payload: IPayloadAdmin) => {
+    addChannel({
+      variables: {
+        addChannel: payload,
       },
+    })
+      .then(() => {
+        Swal.fire("Berhasil", "Channel Baru telah ditambahkan", "success");
 
-      (error) => {
-        console.log(error);
-      },
+        setModal(false);
 
-      async () => {
-        const url = await getDownloadURL(uploadTask.snapshot.ref);
-
-        const payload = {
-          name: input.name,
-          description: input.description,
-          image: url,
-        };
-
-        addChannel({
-          variables: {
-            addChannel: payload,
-          },
-        }).then(() => {
-          Swal.fire("Berhasil", "Channel Baru telah ditambahkan", "success");
-          setModal(false);
-          setInput({ name: "", description: "" });
-        });
-      }
-    );
-  };
-
-  const handleCancel = () => {
-    setInput({ name: "", description: "" });
-    setModal(false);
+        setInput({ name: "", description: "" });
+      })
+      .catch(() =>
+        Swal.fire("Gagal", "Terjadi Kesalahan Pada Server", "error")
+      );
   };
 
   return (
@@ -126,43 +57,15 @@ const AddChannel = ({ sidebar }: { sidebar: boolean }) => {
       </div>
 
       {modal && (
-        <div>
-          <input type="checkbox" id="my-modal" className="modal-toggle" />
-          <div className="modal bg-gray-800/70">
-            <div className="modal-box">
-              <h3 className="font-medium text-slate-700 text-xl text-center">
-                Tambah Channel
-              </h3>
-
-              <FormAdmin
-                valueInput={input.name}
-                valueTextarea={input.description}
-                handleChangeInput={handleChangeInput}
-                handleChangeImage={handleChangeImage}
-              />
-
-              {<p className="text-red-600 font-semibold">{error}</p>}
-
-              <div className="modal-action">
-                <label
-                  htmlFor="my-modal"
-                  onClick={handleCancel}
-                  className="py-2 px-3 rounded-md text-lg bg-red-600 text-white cursor-pointer"
-                >
-                  Batal
-                </label>
-
-                <button
-                  disabled={loading || isErrorInput || isEmptyInput}
-                  onClick={handleAddChannel}
-                  className="py-2 px-3 rounded-md text-lg bg-[#2E9DF1] text-white cursor-pointer disabled:bg-gray-400"
-                >
-                  Tambah
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Modal
+          title="Tambah Channel"
+          buttonTitle="Tambah"
+          addOrEditChannel={handleAddChannel}
+          input={input}
+          setInput={setInput}
+          setModal={setModal}
+          loading={loading}
+        />
       )}
     </React.Fragment>
   );

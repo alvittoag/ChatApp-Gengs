@@ -1,10 +1,13 @@
 // ** Import React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // ** Import Components
 import BannerAuth from "../../components/auth/BannerAuth";
 import SignIn from "../../components/auth/SignIn";
 import SignUp from "../../components/auth/SignUp";
+
+// ** Import Other
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   // ** Local State
@@ -13,6 +16,16 @@ const Auth = () => {
   const handleSignUp = () => {
     setIsSignUp(true);
   };
+
+  const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }
+  }, [token]);
 
   return (
     <div className={`flex gap-16 mx-auto ${signUp && "flex-row-reverse"}`}>

@@ -25,6 +25,7 @@ export const getChannelById = gql`
         id
         message
         user {
+          id
           username
           image
         }

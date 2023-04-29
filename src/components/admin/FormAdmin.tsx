@@ -1,7 +1,11 @@
 type Props = {
   valueInput: string;
   valueTextarea: string;
-  handleChangeInput: (e: any) => void;
+  handleChangeInput: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
   handleChangeImage: (e: any) => void;
 };
 

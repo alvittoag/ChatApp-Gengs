@@ -4,28 +4,33 @@ import { navigation } from "../../recoil/navigation";
 import { toggleSideBar } from "../../recoil/toggle";
 import { searchChannel } from "../../recoil/search-channel";
 import { infoChannel } from "../../recoil/info-channel";
+import { toggleInfoChannel } from "../../recoil/toggle";
+
+// ** Import Components
+import NotFoundChannel from "./notfound-channel/NotFoundChannel";
 
 // ** Import Models
-import { IResApi } from "../../models/ResApi";
+import { IResApi } from "../../models/responseApi";
+import { IResChannel } from "../../models/channel";
 
 // ** Import Service
-import { getChannel } from "../../services/api/GetChannel";
+import { getChannel } from "../../services/query/GetChannel";
 
 // ** Import Other
 import { useSubscription } from "@apollo/client";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import LoadingChannel from "../../globals/LoadingChannel";
-import NotFoundChannel from "./notfound-channel/NotFoundChannel";
 import { capitalize } from "../../helpers/convert-capitalize";
-import { IResChannel } from "../../models/Channel";
+import LazyLoad from "react-lazy-load";
 
 const Channel = () => {
   // ** Recoil State
   const [navigationId, setNavigationId] = useRecoilState(navigation);
-  const isSidebarClose = useRecoilValue(toggleSideBar);
+  const sidebar = useRecoilValue(toggleSideBar);
   const search = useRecoilValue(searchChannel);
   const setInfoChannel = useSetRecoilState(infoChannel);
+  const setInfoSidebar = useSetRecoilState(toggleInfoChannel);
 
   const { data, loading } = useSubscription<IResApi>(getChannel, {
     variables: { value: `%${capitalize(search)}%` },
@@ -34,6 +39,7 @@ const Channel = () => {
   const handleNavigation = (data: IResChannel) => {
     setNavigationId(data.id);
     setInfoChannel(data);
+    setInfoSidebar(false);
   };
 
   return (
@@ -66,13 +72,15 @@ const Channel = () => {
               <div className="w-[1rem]"></div>
             )}
 
-            <img
-              src={data.image}
-              className="rounded-full w-[3rem] h-[3rem] object-cover"
-            />
+            <LazyLoad threshold={0.95}>
+              <img
+                src={data.image}
+                className="rounded-full w-[3rem] h-[3rem] object-cover"
+              />
+            </LazyLoad>
           </div>
 
-          {!isSidebarClose && (
+          {!sidebar && (
             <div>
               <h1 className={`font-[600] text-white/90`}>{data.name}</h1>
 

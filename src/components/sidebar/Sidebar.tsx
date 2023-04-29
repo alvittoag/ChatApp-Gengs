@@ -6,9 +6,6 @@ import Channel from "./Channel";
 import InputSearch from "./InputSearch";
 import AddChannel from "../admin/AddChannel";
 
-// ** Import Models
-import { IUser } from "../../models/User";
-
 // ** Import Recoil
 import { useRecoilState } from "recoil";
 import { toggleSideBar } from "../../recoil/toggle";
@@ -19,14 +16,13 @@ import {
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/outline";
 import Title from "../../globals/Title";
+import { userLocalStorage } from "../../helpers/user-localstorage";
 
 const Sidebar = () => {
   // ** Recoil State
   const [sidebar, setSidebar] = useRecoilState(toggleSideBar);
 
-  const userObj: any = localStorage.getItem("user");
-
-  const user: IUser = JSON.parse(userObj);
+  const { username } = userLocalStorage();
 
   const handleSidebarClose = (isClose: boolean) => {
     setSidebar(isClose);
@@ -62,7 +58,7 @@ const Sidebar = () => {
 
       <div className="relative h-screen">
         <Channel />
-        {user.username === "admin" && <AddChannel sidebar={sidebar} />}
+        {username === "admin" && <AddChannel sidebar={sidebar} />}
       </div>
     </div>
   );
